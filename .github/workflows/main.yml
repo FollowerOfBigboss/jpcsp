@@ -23,7 +23,7 @@ jobs:
         
       - name: Move builds to apporiate artifact folders
         run: mkdir -p dist/{win32,linux,mac};rm -rf dist/jpcsp-macosx/ dist/jpcsp-linux-x86/ dist/jpcsp-linux-amd64/ dist/jpcsp-windows-amd64/ dist/jpcsp-windows-x86/;mv dist/*windows* dist/win32/ 2>/dev/null;mv dist/*linux* dist/linux 2>/dev/null;mv dist/*mac* dist/mac 2>/dev/null;
-        
+        continue-on-error: true
       - uses: actions/upload-artifact@v2
         with:
           name: Win32 builds
