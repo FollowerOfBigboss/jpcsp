@@ -22,19 +22,19 @@ jobs:
         run: ant -f build-auto.xml dist
         
       - name: Move builds to apporiate artifact folders
-        run: cd dist;ls;rm -R -- */;cd ..;mkdir -p dist/{win32,linux,macOS};mv dist/*windows* dist/win32/;ls;mv dist/*linux* dist/linux/;ls;mv dist/*macosx* dist/macOS/;ls;
+        run: cd dist;ls;rm -R -- */;cd ..;mkdir -p dist/{buildWin32,buildLinux,buildMacOS};mv dist/*windows* dist/buildWin32/;ls dist/;mv dist/*linux* dist/buildLinux/;ls dist/;mv *macosx* dist/buildMacOS/;ls dist/;
         continue-on-error: true
       - uses: actions/upload-artifact@v2
         with:
           name: Win32 builds
-          path: dist/win32
+          path: dist/buildWin32
 
       - uses: actions/upload-artifact@v2
         with:
           name: Linux builds
-          path: dist/linux
+          path: dist/buildLinux
 
       - uses: actions/upload-artifact@v2
         with:
           name: Mac OS builds
-          path: dist/macOS
+          path: dist/buildMacOS
