@@ -24,17 +24,21 @@ jobs:
       - name: Move builds to apporiate artifact folders
         run: cd dist;ls;rm -R -- */;cd ..;mkdir -p dist/{buildWin32,buildLinux,buildMacOS};mv dist/*windows* dist/buildWin32/;ls dist/;mv dist/*linux* dist/buildLinux/;ls dist/;mv dist/*macosx* dist/buildMacOS/;ls dist/;
         continue-on-error: true
-      - uses: actions/upload-artifact@v2
+      
+      - name: Publishing Win32 builds
+        uses: actions/upload-artifact@v2
         with:
           name: Win32 builds
           path: dist/buildWin32
-
-      - uses: actions/upload-artifact@v2
+      
+      - name: Publishing Linux builds
+        uses: actions/upload-artifact@v2
         with:
           name: Linux builds
           path: dist/buildLinux
 
-      - uses: actions/upload-artifact@v2
+      - name: Publishing MacOS builds
+        uses: actions/upload-artifact@v2
         with:
           name: Mac OS builds
           path: dist/buildMacOS
