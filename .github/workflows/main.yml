@@ -11,14 +11,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
       - name: Set up JDK 8
         uses: actions/setup-java@v2
         with:
           java-version: '8'
           distribution: 'adopt'
+        
       - name: Build with Ant
         run: ant -f build-auto.xml dist
+        
+      -name: Move builds to apporiate artifact folders
+        run: mkdir -p dist/{win32,linux,mac};rm -rf dist/jpcsp-macosx/ dist/jpcsp-linux-x86/ dist/jpcsp-linux-amd64/ dist/jpcsp-windows-amd64/ dist/jpcsp-windows-x86/;mv dist/*windows* dist/win32/ 2>/dev/null;mv dist/*linux* dist/linux 2>/dev/null;mv dist/*mac* dist/mac 2>/dev/null;
+        
       - uses: actions/upload-artifact@v2
         with:
-          name: Package
-          path: dist
+          name: Win32 builds
+          path: dist/win32
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Linux builds
+          path: dist/linux
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Mac OS builds
+          path: dist/mac
