@@ -50,6 +50,6 @@ jobs:
         with:
           token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
           files: |
-            dist/buildWin32/*
-            dist/buildMacOS/*
-            dist/buildLinux/*
+            dist/buildWin32/*.7z
+            dist/buildMacOS/*.7z
+            dist/buildLinux/*.7z
