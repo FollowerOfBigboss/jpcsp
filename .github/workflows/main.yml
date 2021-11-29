@@ -51,4 +51,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           files: |
-            gpl.txt
+            dist/buildLinux/*.7z
+            dist/buildMacOS/*.7z
+            dist/buildWin32/*.7z
