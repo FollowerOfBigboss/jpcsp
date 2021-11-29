@@ -25,11 +25,11 @@ jobs:
         
       - name: Move builds to apporiate artifact folders
         run: |
-        # Remove all unnecessary build folders since we will only release builds with archived with 7zip
+          # Remove all unnecessary build folders since we will only release builds with archived with 7zip
           cd dist
           rm -R -- */
           cd ..
-        # Make directories for artifact releases and move all of builds to their respective folders
+          # Make directories for artifact releases and move all of builds to their respective folders
           mkdir -p dist/{buildWin32,buildLinux,buildMacOS}
           mv dist/*windows* dist/buildWin32/
           mv dist/*linux* dist/buildLinux/
